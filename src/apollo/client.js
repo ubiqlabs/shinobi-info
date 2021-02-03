@@ -20,7 +20,7 @@ export const healthClient = new ApolloClient({
 
 export const blockClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://subgraph.ubiq.ninja/subgraphs/name/octanolabs/ethereum-blocks',
+    uri: 'https://graphnode.octano.dev/subgraphs/name/octanolabs/ethereum-blocks',
   }),
   cache: new InMemoryCache(),
 })
