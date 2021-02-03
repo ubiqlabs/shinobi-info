@@ -6,9 +6,9 @@ import { isAddress } from '../utils'
 import copy from 'copy-to-clipboard'
 
 export function useColor(tokenAddress, token) {
-  const [color, setColor] = useState('#2172E5')
+  const [color, setColor] = useState('#00ea90')
   if (tokenAddress) {
-    const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
+    const path = `https://raw.githubusercontent.com/octanolabs/assets/master/blockchains/ubiq/assets/${isAddress(
       tokenAddress
     )}/logo.png`
     if (path) {

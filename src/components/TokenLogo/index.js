@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { isAddress } from '../../utils/index.js'
-import EthereumLogo from '../../assets/eth.png'
+import UbiqLogo from '../../assets/ubq.png'
 
 const BAD_IMAGES = {}
 
@@ -19,7 +19,7 @@ const Image = styled.img`
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
 `
 
-const StyledEthereumLogo = styled.div`
+const StyledUbiqLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,22 +56,22 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     address = '0xc011a72400e58ecd99ee497cf89e3775d4bd732f'
   }
 
-  if (address?.toLowerCase() === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') {
+  if (address?.toLowerCase() === '0x1fa6a37c64804c0d797ba6bc1955e50068fbf362') {
     return (
-      <StyledEthereumLogo size={size} {...rest}>
+      <StyledUbiqLogo size={size} {...rest}>
         <img
-          src={EthereumLogo}
+          src={UbiqLogo}
           style={{
             boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.075)',
             borderRadius: '24px',
           }}
           alt=""
         />
-      </StyledEthereumLogo>
+      </StyledUbiqLogo>
     )
   }
 
-  const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
+  const path = `https://raw.githubusercontent.com/octanolabs/assets/master/blockchains/ubiq/assets/${isAddress(
     address
   )}/logo.png`
 

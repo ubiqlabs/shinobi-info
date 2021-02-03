@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect, useState } from 'react'
-import { useAllPairData, usePairData } from './PairData'
-import { client, stakingClient } from '../apollo/client'
+import { usePairData } from './PairData'
+import { client } from '../apollo/client'
+
 import {
   USER_TRANSACTIONS,
   USER_POSITIONS,
   USER_HISTORY,
   PAIR_DAY_DATA_BULK,
-  MINING_POSITIONS,
 } from '../apollo/queries'
 import { useTimeframe, useStartTimestamp } from './Application'
 import dayjs from 'dayjs'
@@ -420,7 +420,7 @@ export function useUserLiquidityChart(account) {
               totalUSD +
               (ownershipPerPair[dayData.pairAddress]
                 ? (parseFloat(ownershipPerPair[dayData.pairAddress].lpTokenBalance) / parseFloat(dayData.totalSupply)) *
-                  parseFloat(dayData.reserveUSD)
+                parseFloat(dayData.reserveUSD)
                 : 0))
           } else {
             return totalUSD
@@ -484,6 +484,7 @@ export function useUserPositions(account) {
   return positions
 }
 
+/*
 export function useMiningPositions(account) {
   const [state, { updateMiningPositions }] = useUserContext()
   const allPairData = useAllPairData()
@@ -519,3 +520,4 @@ export function useMiningPositions(account) {
   }, [account, miningPositions, updateMiningPositions, snapshots, allPairData])
   return miningPositions
 }
+*/

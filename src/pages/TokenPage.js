@@ -190,7 +190,7 @@ function TokenPage({ address, history }) {
               style={{ width: 'fit-content' }}
               color={backgroundColor}
               external
-              href={'https://etherscan.io/address/' + address}
+              href={'https://ubiqscan.io/address/' + address}
             >
               <Text style={{ marginLeft: '.15rem' }} fontSize={'14px'} fontWeight={400}>
                 ({address.slice(0, 8) + '...' + address.slice(36, 42)})
@@ -241,8 +241,8 @@ function TokenPage({ address, history }) {
                       <Bookmark style={{ marginRight: '0.5rem', opacity: 0.4 }} />
                     </StyledIcon>
                   ) : (
-                    <></>
-                  )}
+                        <></>
+                      )}
                   <Link href={getPoolLink(address)} target="_blank">
                     <ButtonLight color={backgroundColor}>+ Add Liquidity</ButtonLight>
                   </Link>
@@ -348,7 +348,7 @@ function TokenPage({ address, history }) {
                   setChecked={() => setUseTracked(!useTracked)}
                   text={'Hide untracked pairs'}
                 />
-                <QuestionHelper text="Untracked USD values may be inaccurate due to low liquidity ETH or stablecoin pairs." />
+                <QuestionHelper text="Untracked USD values may be inaccurate due to low liquidity UBQ pairs." />
               </AutoRow>
             </RowBetween>
             <Panel
@@ -361,8 +361,8 @@ function TokenPage({ address, history }) {
               {address && fetchedPairsList ? (
                 <PairList color={backgroundColor} address={address} pairs={fetchedPairsList} useTracked={useTracked} />
               ) : (
-                <Loader />
-              )}
+                  <Loader />
+                )}
             </Panel>
             <RowBetween mt={40} mb={'1rem'}>
               <TYPE.main fontSize={'1.125rem'}>Transactions</TYPE.main> <div />
@@ -404,8 +404,8 @@ function TokenPage({ address, history }) {
                     </AutoRow>
                   </Column>
                   <ButtonLight color={backgroundColor}>
-                    <Link color={backgroundColor} external href={'https://etherscan.io/address/' + address}>
-                      View on Etherscan ↗
+                    <Link color={backgroundColor} external href={'https://ubiqscan.io/address/' + address}>
+                      View on Ubiqscan ↗
                     </Link>
                   </ButtonLight>
                 </TokenDetailsLayout>

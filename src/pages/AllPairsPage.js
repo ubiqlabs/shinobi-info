@@ -32,7 +32,7 @@ function AllPairsPage() {
         </RowBetween>
         <AutoRow gap="4px">
           <CheckBox checked={useTracked} setChecked={() => setUseTracked(!useTracked)} text={'Hide untracked pairs'} />
-          <QuestionHelper text="Untracked USD values may be inaccurate due to low liquidity ETH or stablecoin pairs." />
+          <QuestionHelper text="Untracked USD values may be inaccurate due to low liquidity UBQ pairs." />
         </AutoRow>
         <Panel style={{ padding: below800 && '1rem 0 0 0 ' }}>
           <PairList pairs={allPairs} disbaleLinks={true} maxItems={50} useTracked={useTracked} />
