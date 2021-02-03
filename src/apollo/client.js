@@ -12,7 +12,7 @@ export const client = new ApolloClient({
 
 export const healthClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://health.octano.dev/graphql',
+    uri: 'https://graphnode.octano.dev/graphql',
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,
