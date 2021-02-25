@@ -19,6 +19,10 @@ const TOKEN_OVERRIDES: { [address: string]: { name: string; symbol: string } } =
     name: 'Ubiq (Wrapped)',
     symbol: 'UBQ',
   },
+  '0x068adbc25efa195f13e70812904761100046059c': {
+    name: 'Expanse (Wrapped)',
+    symbol: 'uWEXP'
+  }
 }
 
 // override tokens with incorrect symbol or names
