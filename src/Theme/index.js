@@ -216,7 +216,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 ::-webkit-scrollbar-track
 {
-  background: #222;
+  background: ${({ theme }) => theme.bg1};
 }
 ::-webkit-scrollbar-thumb
 {
