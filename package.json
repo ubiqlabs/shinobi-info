@@ -1,7 +1,7 @@
 {
-  "name": "shinobi-info",
+  "name": "ubiqswap-info",
   "private": true,
-  "homepage": "https://shinobi-info.ubiq.ninja",
+  "homepage": "https://info.swap.ubiq.fi",
   "devDependencies": {
     "@popperjs/core": "^2.4.2",
     "@reach/portal": "^0.10.3",

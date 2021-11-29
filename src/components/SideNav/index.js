@@ -164,13 +164,13 @@ function SideNav({ history }) {
           </AutoColumn>
           <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
             <HeaderText>
-              <Link href="https://shinobi.ubiq.ninja" target="_blank">
-                Shinobi
+              <Link href="https://swap.ubiq.fi" target="_blank">
+                Swap
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://ubiq.ninja" target="_blank">
-                ubiq.ninja
+              <Link href="https://ubiqlabs.io" target="_blank">
+                UbiqLabs
               </Link>
             </HeaderText>
             <HeaderText>
@@ -179,7 +179,7 @@ function SideNav({ history }) {
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://twitter.com/ubiqsmart" target="_blank">
+              <Link href="https://twitter.com/ubiqlabs" target="_blank">
                 Twitter
               </Link>
             </HeaderText>
@@ -197,10 +197,10 @@ function SideNav({ history }) {
           )}
         </DesktopWrapper>
       ) : (
-          <MobileWrapper>
-            <Title />
-          </MobileWrapper>
-        )}
+        <MobileWrapper>
+          <Title />
+        </MobileWrapper>
+      )}
     </Wrapper>
   )
 }

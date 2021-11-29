@@ -71,7 +71,7 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     )
   }
 
-  const path = `https://raw.githubusercontent.com/octanolabs/assets/master/blockchains/ubiq/assets/${isAddress(
+  const path = `https://raw.githubusercontent.com/ubiqlabs/assets/master/blockchains/ubiq/assets/${isAddress(
     address
   )}/logo.png`
 

@@ -40,13 +40,13 @@ export function getTimeframe(timeWindow) {
 export function getPoolLink(token0Address, token1Address = null, remove = false) {
   if (!token1Address) {
     return (
-      `https://shinobi.ubiq.ninja/` +
+      `https://swap.ubiq.fi/#/` +
       (remove ? `remove` : `add`) +
       `/${token0Address === '0x1fa6a37c64804c0d797ba6bc1955e50068fbf362' ? 'UBQ' : token0Address}/${'UBQ'}`
     )
   } else {
     return (
-      `https://shinobi.ubiq.ninja/` +
+      `https://swap.ubiq.fi/#/` +
       (remove ? `remove` : `add`) +
       `/${token0Address === '0x1fa6a37c64804c0d797ba6bc1955e50068fbf362' ? 'UBQ' : token0Address}/${token1Address === '0x1fa6a37c64804c0d797ba6bc1955e50068fbf362' ? 'UBQ' : token1Address
       }`
@@ -56,19 +56,19 @@ export function getPoolLink(token0Address, token1Address = null, remove = false)
 
 export function getSwapLink(token0Address, token1Address = null) {
   if (!token1Address) {
-    return `https://shinobi.ubiq.ninja/swap?inputCurrency=${token0Address}`
+    return `https://swap.ubiq.fi/#/swap?inputCurrency=${token0Address}`
   } else {
-    return `https://shinobi.ubiq.ninja/swap?inputCurrency=${token0Address === '0x1fa6a37c64804c0d797ba6bc1955e50068fbf362' ? 'UBQ' : token0Address
+    return `https://swap.ubiq.fi/#/swap?inputCurrency=${token0Address === '0x1fa6a37c64804c0d797ba6bc1955e50068fbf362' ? 'UBQ' : token0Address
       }&outputCurrency=${token1Address === '0x1fa6a37c64804c0d797ba6bc1955e50068fbf362' ? 'UBQ' : token1Address}`
   }
 }
 
 export function getMiningPoolLink(token0Address) {
-  return `https://shinobi.ubiq.ninja/#/uni/UBQ/${token0Address}`
+  return `https://swap.ubiq.fi/#/uni/UBQ/${token0Address}`
 }
 
 export function getUniswapAppLink(linkVariable) {
-  let baseUniswapUrl = 'https://shinobi.ubiq.ninja/#/uni'
+  let baseUniswapUrl = 'https://swap.ubiq.fi/#/uni'
   if (!linkVariable) {
     return baseUniswapUrl
   }

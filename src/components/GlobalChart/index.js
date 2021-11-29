@@ -8,7 +8,7 @@ import TradingViewChart, { CHART_TYPES } from '../TradingviewChart'
 import { RowFixed } from '../Row'
 import { OptionButton } from '../ButtonStyled'
 import { getTimeframe } from '../../utils'
-import { TYPE } from '../../Theme'
+import { TYPE, globalPrimary } from '../../Theme'
 
 const CHART_VIEW = {
   VOLUME: 'Volume',
@@ -79,7 +79,7 @@ const GlobalChart = ({ display }) => {
   return chartDataFiltered ? (
     <>
       {below800 && (
-        <DropdownSelect options={CHART_VIEW} active={chartView} setActive={setChartView} color={'#00ea90'} />
+        <DropdownSelect options={CHART_VIEW} active={chartView} setActive={setChartView} color={globalPrimary} />
       )}
 
       {chartDataFiltered && chartView === CHART_VIEW.LIQUIDITY && (
@@ -135,8 +135,8 @@ const GlobalChart = ({ display }) => {
       )}
     </>
   ) : (
-      ''
-    )
+    ''
+  )
 }
 
 export default GlobalChart

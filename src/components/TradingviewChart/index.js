@@ -8,6 +8,8 @@ import { usePrevious } from 'react-use'
 import { Play } from 'react-feather'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
 import { IconWrapper } from '..'
+import { globalPrimary } from '../../Theme'
+import { transparentize } from 'polished'
 
 dayjs.extend(utc)
 
@@ -129,7 +131,7 @@ const TradingViewChart = ({
       var series =
         type === CHART_TYPES.BAR
           ? chart.addHistogramSeries({
-            color: '#00ea90',
+            color: globalPrimary,
             priceFormat: {
               type: 'volume',
             },
@@ -137,13 +139,13 @@ const TradingViewChart = ({
               top: 0.32,
               bottom: 0,
             },
-            lineColor: '#00ea90',
+            lineColor: globalPrimary,
             lineWidth: 3,
           })
           : chart.addAreaSeries({
-            topColor: '#00ea90',
-            bottomColor: 'rgba(0, 234, 144, 0)',
-            lineColor: '#00ea90',
+            topColor: globalPrimary,
+            bottomColor: transparentize(1, globalPrimary),
+            lineColor: globalPrimary,
             lineWidth: 3,
           })
 
