@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { isAddress } from '../../utils/index.js'
-import UbiqLogo from '../../assets/ubq.png'
+
+const UbiqLogo = `https://raw.githubusercontent.com/ubiqlabs/assets/master/blockchains/ubiq/assets/logo.png`;
 
 const BAD_IMAGES = {}
 
