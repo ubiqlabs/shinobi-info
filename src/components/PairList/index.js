@@ -11,6 +11,7 @@ import { Divider } from '../../components'
 import { withRouter } from 'react-router-dom'
 import { formattedNum, formattedPercent } from '../../utils'
 import DoubleTokenLogo from '../DoubleLogo'
+import { PAIR_BLACKLIST } from '../../constants'
 import FormattedName from '../FormattedName'
 import QuestionHelper from '../QuestionHelper'
 import { TYPE } from '../../Theme'
@@ -145,14 +146,26 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
   }, [pairs])
 
   useEffect(() => {
-    if (pairs) {
+    const filteredPairs = () => {
+      return (
+        pairs &&
+        Object.keys(pairs)
+          .filter((address) => (useTracked ? !!pairs[address]?.trackedReserveUSD : true))
+          .filter((address) => {
+            return !PAIR_BLACKLIST.includes(address)
+          })
+      )
+    }
+
+    const filtered = filteredPairs()
+    if (pairs && filtered) {
       let extraPages = 1
-      if (Object.keys(pairs).length % ITEMS_PER_PAGE === 0) {
+      if (filtered.length % ITEMS_PER_PAGE === 0) {
         extraPages = 0
       }
-      setMaxPage(Math.floor(Object.keys(pairs).length / ITEMS_PER_PAGE) + extraPages)
+      setMaxPage(Math.floor(filtered.length / ITEMS_PER_PAGE) + extraPages)
     }
-  }, [ITEMS_PER_PAGE, pairs])
+  }, [ITEMS_PER_PAGE, pairs, useTracked])
 
   const ListItem = ({ pairAddress, index }) => {
     const pairData = pairs[pairAddress]
@@ -162,7 +175,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
       const volume = formattedNum(useTracked ? pairData.oneDayVolumeUSD : pairData.oneDayVolumeUntracked, true)
       const apy = formattedPercent(
         ((useTracked ? pairData.oneDayVolumeUSD : pairData.oneDayVolumeUntracked) * 0.003 * 365 * 100) /
-          (useTracked ? pairData.trackedReserveUSD : pairData.reserveUSD)
+        (useTracked ? pairData.trackedReserveUSD : pairData.reserveUSD)
       )
 
       const weekVolume = formattedNum(useTracked ? pairData.oneWeekVolumeUSD : pairData.oneWeekVolumeUntracked, true)
@@ -209,6 +222,9 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
     pairs &&
     Object.keys(pairs)
       .filter((address) => (useTracked ? !!pairs[address]?.trackedReserveUSD : true))
+      .filter((address) => {
+        return !PAIR_BLACKLIST.includes(address)
+      })
       .sort((addressA, addressB) => {
         const pairA = pairs[addressA]
         const pairB = pairs[addressB]
