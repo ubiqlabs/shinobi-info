@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import 'feather-icons'
 import styled from 'styled-components'
 import Panel from '../components/Panel'
@@ -31,7 +31,7 @@ import { Bookmark, PlusCircle, AlertCircle } from 'react-feather'
 import FormattedName from '../components/FormattedName'
 import { useListedTokens } from '../contexts/Application'
 import HoverText from '../components/HoverText'
-import { UNTRACKED_COPY } from '../constants'
+import { pairIsBlacklisted, UNTRACKED_COPY } from '../constants'
 
 const DashboardWrapper = styled.div`
   width: 100%;
@@ -188,6 +188,9 @@ function PairPage({ pairAddress, history }) {
   const [savedPairs, addPair] = useSavedPairs()
 
   const listedTokens = useListedTokens()
+  if (
+    pairIsBlacklisted(token0?.id, token1?.id)
+  ) return (<Redirect to="/home" />)
 
   return (
     <PageWrapper>
@@ -237,8 +240,8 @@ function PairPage({ pairAddress, history }) {
                           Pair
                         </>
                       ) : (
-                          ''
-                        )}
+                        ''
+                      )}
                     </TYPE.main>
                   </RowFixed>
                 </RowFixed>
@@ -260,8 +263,8 @@ function PairPage({ pairAddress, history }) {
                       <Bookmark style={{ marginRight: '0.5rem', opacity: 0.4 }} />
                     </StyledIcon>
                   ) : (
-                        <></>
-                      )}
+                    <></>
+                  )}
 
                   <Link external href={getPoolLink(token0?.id, token1?.id)}>
                     <ButtonLight color={backgroundColor}>+ Add Liquidity</ButtonLight>

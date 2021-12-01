@@ -11,7 +11,7 @@ import { Divider } from '../../components'
 import { withRouter } from 'react-router-dom'
 import { formattedNum, formattedPercent } from '../../utils'
 import DoubleTokenLogo from '../DoubleLogo'
-import { PAIR_BLACKLIST } from '../../constants'
+import { OVERVIEW_TOKEN_BLACKLIST, pairIsBlacklisted } from '../../constants'
 import FormattedName from '../FormattedName'
 import QuestionHelper from '../QuestionHelper'
 import { TYPE } from '../../Theme'
@@ -152,7 +152,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
         Object.keys(pairs)
           .filter((address) => (useTracked ? !!pairs[address]?.trackedReserveUSD : true))
           .filter((address) => {
-            return !PAIR_BLACKLIST.includes(address)
+            return pairIsBlacklisted(pairs[address]?.token0?.id, pairs[address]?.token1?.id)
           })
       )
     }
@@ -223,7 +223,8 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10, useTracked = fals
     Object.keys(pairs)
       .filter((address) => (useTracked ? !!pairs[address]?.trackedReserveUSD : true))
       .filter((address) => {
-        return !PAIR_BLACKLIST.includes(address)
+        return !OVERVIEW_TOKEN_BLACKLIST.includes(pairs[address]?.token0?.id) &&
+          !OVERVIEW_TOKEN_BLACKLIST.includes(pairs[address]?.token1?.id)
       })
       .sort((addressA, addressB) => {
         const pairA = pairs[addressA]

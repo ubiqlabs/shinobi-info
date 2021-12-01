@@ -16,6 +16,7 @@ import DropdownSelect from '../DropdownSelect'
 import FormattedName from '../FormattedName'
 import { TYPE } from '../../Theme'
 import { updateNameData } from '../../utils/data'
+import { pairIsBlacklisted } from '../../constants'
 
 dayjs.extend(utc)
 
@@ -195,6 +196,8 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
           newTxn.account = mint.to
           newTxn.token0Symbol = updateNameData(mint.pair).token0.symbol
           newTxn.token1Symbol = updateNameData(mint.pair).token1.symbol
+          newTxn.token0Id = mint.pair.token0.id
+          newTxn.token1Id = mint.pair.token1.id
           newTxn.amountUSD = mint.amountUSD
           return newTxns.push(newTxn)
         })
@@ -210,6 +213,8 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
           newTxn.account = burn.sender
           newTxn.token0Symbol = updateNameData(burn.pair).token0.symbol
           newTxn.token1Symbol = updateNameData(burn.pair).token1.symbol
+          newTxn.token0Id = burn.pair.token0.id
+          newTxn.token1Id = burn.pair.token1.id
           newTxn.amountUSD = burn.amountUSD
           return newTxns.push(newTxn)
         })
@@ -226,11 +231,15 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
             newTxn.token1Symbol = updateNameData(swap.pair).token1.symbol
             newTxn.token0Amount = Math.abs(netToken0)
             newTxn.token1Amount = Math.abs(netToken1)
+            newTxn.token0Id = swap.pair.token0.id
+            newTxn.token1Id = swap.pair.token1.id
           } else if (netToken1 < 0) {
             newTxn.token0Symbol = updateNameData(swap.pair).token1.symbol
             newTxn.token1Symbol = updateNameData(swap.pair).token0.symbol
             newTxn.token0Amount = Math.abs(netToken1)
             newTxn.token1Amount = Math.abs(netToken0)
+            newTxn.token0Id = swap.pair.token0.id
+            newTxn.token1Id = swap.pair.token1.id
           }
 
           newTxn.hash = swap.transaction.id
@@ -244,6 +253,8 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
       }
 
       const filtered = newTxns.filter((item) => {
+        if (pairIsBlacklisted(item.token0Id, item.token1Id))
+          return false
         if (txFilter !== TXN_TYPE.ALL) {
           return item.type === txFilter
         }
